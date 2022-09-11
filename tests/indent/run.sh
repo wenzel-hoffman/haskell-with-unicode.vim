@@ -1,14 +1,43 @@
-#!/bin/sh
+#! /usr/bin/env bash
 
-for i in test???; do
-  cd $i
-  nvim --headless -s test.vim test.hs 2> /dev/null
-  diff expected.hs result.hs
-  if [ $? -eq 0 ]; then
-    echo "$(basename $PWD) succeded"
+set -o errexit || exit
+set -o nounset
+set -o pipefail
+
+# Guard dependencies
+>/dev/null type vim
+>/dev/null type nvim
+>/dev/null type diff
+
+# Change directory to the directory of this script
+DIR=$(dirname -- "${BASH_SOURCE[0]}")
+cd -- "$DIR"
+
+tests_total=0
+tests_failed=0
+
+for test_dir in test???; do
+  TEST_NAME=$(basename -- "$test_dir")
+  (( tests_total+=1 ))
+  >/dev/null pushd -- "$test_dir"
+
+  printf 'Running %s...\n' "$TEST_NAME"
+  nvim --headless -s test.vim test.hs 2>/dev/null
+
+  if diff expected.hs result.hs; then
+    printf '%s succeded\n' "$TEST_NAME"
     rm result.hs
   else
-    echo "$(basename $PWD) failed"
+    >&2 printf '%s failed!\n' "$TEST_NAME"
+    (( tests_failed+=1 ))
   fi
-  cd ..
+
+  >/dev/null popd
 done
+
+if (( tests_failed > 0 )); then
+  printf '%d of %d tests have FAILED!\n' "$tests_failed" "$tests_total"
+  exit 1
+fi
+
+echo SUCCESS
