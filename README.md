@@ -33,7 +33,7 @@ configure it in your `configuration.nix`.
 As `programs.vim` in case of NixOS:
 
 ``` nix
-{ pkgs, ... }
+{ pkgs, ... }:
 let
   haskell-with-unicode = vimUtils.buildVimPlugin rec {
     pname = "haskell-with-unicode.vim";
