@@ -177,6 +177,11 @@ function! GetHaskellIndent()
   "   ...
   " >>,
   if l:line =~ '^\s*,'
+    " FIXME: Tests 10 and 20 are failing. When record fields block is not closed
+    "        (when you don’t have `}` closing bracket) `isInBlock` and
+    "        `getNesting` never equals to `l:n`. Test 21 on the other hand shows
+    "        that if you have that closing `}` everything is working as
+    "        expected.
     if s:isInBlock(s:getHLStack(line('.'), col('.')))
       normal! 0
       call search(',', 'cW')
