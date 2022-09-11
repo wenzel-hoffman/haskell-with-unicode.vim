@@ -15,6 +15,7 @@ cd -- "$DIR"
 
 tests_total=0
 tests_failed=0
+tests_failed_names=()
 
 for test_dir in test???; do
   TEST_NAME=$(basename -- "$test_dir")
@@ -30,13 +31,19 @@ for test_dir in test???; do
   else
     >&2 printf '%s failed!\n' "$TEST_NAME"
     (( tests_failed+=1 ))
+    tests_failed_names+=("$TEST_NAME")
   fi
 
   >/dev/null popd
 done
 
 if (( tests_failed > 0 )); then
-  printf '%d of %d tests have FAILED!\n' "$tests_failed" "$tests_total"
+  TESTS_FAILED_NAMES_AS_STR="${tests_failed_names[*]}"
+  >&2 printf \
+    '%d of %d tests (%s) have FAILED!\n' \
+    "$tests_failed" \
+    "$tests_total" \
+    "${TESTS_FAILED_NAMES_AS_STR// /, }"
   exit 1
 fi
 
