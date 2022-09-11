@@ -81,9 +81,7 @@ let
 
   vimWithPlugins = pkgs.vim_configurable.customize {
     vimrcConfig = {
-      packages.myplugins = {
-        start = [ haskell-with-unicode ];
-      };
+      packages.myPlugins.start = [ haskell-with-unicode ];
       customRC = ''
         syntax on
         filetype plugin indent on
@@ -253,8 +251,10 @@ This plugin also supports an alterative style for `case` indentation.
 
 *  `let g:cabal_indent_section = 2` (limited to max. 4 spaces)
 
-        executable name
-        >>main-is:             Main.hs
+  ``` haskell
+  executable name
+  >>main-is:             Main.hs
+  ```
 
 ## Author
 

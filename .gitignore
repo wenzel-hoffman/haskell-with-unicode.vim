@@ -1,1 +1,11 @@
+# Generated ctags file
 tags
+
+# Nix build artifacts
+result*
+
+# Direnv configuration file
+.envrc
+
+# Temporary test result files
+tests/indent/test*/result.hs
