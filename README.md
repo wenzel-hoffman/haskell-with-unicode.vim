@@ -1,10 +1,12 @@
 # Syntax Highlighting and Indentation for Haskell and Cabal with Unicode Support
 
 Vim/Neovim plugin for Haskell language support (including Cabal) which provides
-better experience than builtin Haskell support in Vim.
+better experience than builtin Haskell support in Vim. This plugin also provides
+support for `UnicodeSyntax` Haskell language extension (see
+[Unicode-symbols in HaskellWiki](https://wiki.haskell.org/Unicode-symbols)).
 
-This is a fork of [haskell-vim][] with added unicode support. There is no
-promise though it will always be as the original plugin but only with unicode
+This is a fork of [haskell-vim][] with added Unicode support. There is no
+promise though it will always be as the original plugin but only with Unicode
 support. This fork may have other differences from its origin. The original
 plugin itself was also forked from [idris-vim][].
 
