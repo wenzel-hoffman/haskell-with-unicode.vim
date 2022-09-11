@@ -1,0 +1,161 @@
+*haskell-with-unicode.txt*                          Last Change 2022 September 11
+===============================================================================
+===============================================================================
+
+===============================================================================
+CONTENTS                                          *haskell-with-unicode-contents*
+
+  1. Features      |haskell-with-unicode-features|
+  2. Configuration |haskell-with-unicode-configuration|
+  3. Highlighting  |haskell-with-unicode-indentation|
+
+===============================================================================
+FEATURES                                          *haskell-with-unicode-features*
+
+  * Covers a broader spectrum of keywords
+  * Highlighting for new features like type families, pattern synonyms,
+    arrow syntax, recursive do, role annotations, QuasiQuotation
+  * More contextual highlighting
+    (e.g. highlight "as" or "family" only in appropriate places)
+  * Smarter indentation
+  * Better Cabal support
+
+===============================================================================
+CONFIGURATION                                *haskell-with-unicode-configuration*
+
+To enable the features you would like to use, just add the according line to
+your `.vimrc`.
+
+===============================================================================
+HIGHLIGHTING                                  *haskell-with-unicode-highlighting*
+
+This plugin can highlight additional keywords. This is enabled by setting the
+according variable to 1 in the `.vimrc`.
+
+  * |haskell-with-unicode-enable-quantification|
+  * |haskell-with-unicode-enable-recursivedo|
+  * |haskell-with-unicode-enable-arrowsyntax|
+  * |haskell-with-unicode-enable-pattern-synonyms|
+  * |haskell-with-unicode-enable-typeroles|
+  * |haskell-with-unicode-enable-static-pointers|
+  * |haskell-with-unicode-classic-highlighting|
+  * |haskell-with-unicode-disable-TH|
+
+                                     *haskell-with-unicode-enable-quantification*
+`g:haskell_enable_quantification`   Enables highlighting of `forall`.
+
+                                        *haskell-with-unicode-enable-recursivedo*
+`g:haskell_enable_recursivedo`      Enables highlighting of `mdo` and `rec`.
+
+                                        *haskell-with-unicode-enable-arrowsyntax*
+`g:haskell_enable_arrowsyntax`      Enables highlighting of `proc`.
+
+                                   *haskell-with-unicode-enable-pattern-synonyms*
+`g:haskell_enable_pattern_synonyms` Enables highlighting of the `pattern` keyword.
+
+                                          *haskell-with-unicode-enable-typeroles*
+`g:haskell_enable_typeroles`        Enables highlighting of the `role` keyword, as
+                                  well as `phantom`, `norminal` and
+                                  `representational`.
+
+                                    *haskell-with-unicode-enable-static-pointers*
+`g:haskell_enable_static_pointers`  Enables highlighting of the `static` keyword.
+
+                                      *haskell-with-unicode-classic-highlighting*
+This plugin has an opinionated highlighting. If you do not like that you can
+switch to a more traditional mode by setting
+`g:haskell_classic_highlighting` to 1.
+
+                                                *haskell-with-unicode-disable-TH*
+Disabling Template Haskell and QuasiQuoting syntax is possible by setting
+`g:haskell_disable_TH` to `1`.
+
+===============================================================================
+INDENTATION                                    *haskell-with-unicode-indentation*
+
+You can disable the indentation by setting `g:haskell_indent_disable` to `1`.
+
+To configure indentation in `haskell-with-unicode` you can use the following
+variables to change indentation depth, just add the according line to your
+`.vimrc`.
+
+Haskell~
+
+  * |haskell-with-unicode-indent-if|
+  * |haskell-with-unicode-indent-case|
+  * |haskell-with-unicode-indent-let|
+  * |haskell-with-unicode-indent-where|
+  * |haskell-with-unicode-indent-before-where|
+  * |haskell-with-unicode-indent-after-bare-where|
+  * |haskell-with-unicode-indent-do|
+  * |haskell-with-unicode-indent-in|
+  * |haskell-with-unicode-indent-guard|
+
+                                                 *haskell-with-unicode-indent-if*
+* let g:haskell_indent_if = 3 >
+
+        if bool
+        >>>then ...
+        >>>else ...
+<
+
+                                               *haskell-with-unicode-indent-case*
+* let g:haskell_indent_case = 2 >
+
+        case xs of
+        >>[]     -> ...
+        >>(y:ys) -> ...
+<
+                                                *haskell-with-unicode-indent-let*
+* let g:haskell_indent_let = 4 >
+
+        let x = 0 in
+        >>>>x
+<
+                                              *haskell-with-unicode-indent-where*
+* let g:haskell_indent_where = 6 >
+
+        where f :: Int -> Int
+        >>>>>>f x = x
+<
+                                       *haskell-with-unicode-indent-before-where*
+* let g:haskell_indent_before_where = 2 >
+
+        foo
+        >>where
+<
+                                   *haskell-with-unicode-indent-after-bare-where*
+* let g:haskell_indent_after_bare_where = 2 >
+
+        where
+        >>foo
+<
+                                                 *haskell-with-unicode-indent-do*
+* let g:haskell_indent_do = 3 >
+
+        do x <- a
+        >>>y <- b
+<
+                                                 *haskell-with-unicode-indent-in*
+* let g:haskell_indent_in = 1 >
+
+        let x = 1
+        >in x
+<
+                                              *haskell-with-unicode-indent-guard*
+* let g:haskell_indent_guard = 2 >
+
+        f x y
+        >>|
+<
+
+Cabal~
+
+  * |haskell-with-unicode-cabal-indent-section|
+
+                                      *haskell-with-unicode-cabal-indent-section*
+* let g:cabal_indent_section = 2 (limited to max. 4 spaces) >
+
+        executable name
+        >>main-is:             Main.hs
+<
