@@ -1,0 +1,1 @@
+foo = SomeRecord { name = ")"

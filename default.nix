@@ -28,9 +28,6 @@ let
     " Use spaces instead of tabs for Haskell
     set expandtab
 
-    " Common option in users’ configurations
-    set autoindent
-
     " Common indentation size for Haskell
     set tabstop=2
     set shiftwidth=2
