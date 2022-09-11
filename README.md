@@ -159,16 +159,9 @@ Disabling Template Haskell and QuasiQuoting syntax is possible by setting
 If you dislike how indentation works you can disable it by setting
 `g:haskell_indent_disable` to `1`.
 
-Additionally you can use the [vim-hindent][] plugin to achieve automatic
-indentation using [hindent][]. Mind that *hindent* itself recommends to just use
-`formatprg` feature for this purpose:
-
-``` viml
-setlocal formatprg=hindent
-```
-
-And then press `gq` to reformat. See `:help 'formatprg'` and `:help gq` for
-detauls.
+To configure indentation you can use the following variables to change
+indentation depth, just add the according line to your `.vimrc` (Vim) or
+`init.vim` (Neovim).
 
 #### Haskell
 
@@ -249,12 +242,25 @@ This plugin also supports an alterative style for `case` indentation.
 
 #### Cabal
 
-*  `let g:cabal_indent_section = 2` (limited to max. 4 spaces)
+* `let g:cabal_indent_section = 2` (limited to max. 4 spaces)
 
   ``` haskell
   executable name
   >>main-is:             Main.hs
   ```
+
+#### Using hindent
+
+Additionally you can use the [vim-hindent][] plugin to achieve automatic
+indentation using [hindent][]. Mind that *hindent* itself recommends to just use
+`formatprg` feature for this purpose:
+
+``` viml
+setlocal formatprg=hindent
+```
+
+And then press `gq` to reformat. See `:help 'formatprg'` and `:help gq` for
+detauls.
 
 ## Author
 
